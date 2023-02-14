@@ -39,7 +39,7 @@ app.get("/compose", (req,res) => {
 
 app.post("/", (req, res) =>{
 console.log(req.body.blogPost)
-res.send(req.body.blogPost)
+res.redirect("/");
 });
 
 
