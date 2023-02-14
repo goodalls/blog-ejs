@@ -38,7 +38,11 @@ app.get("/compose", (req,res) => {
 });
 
 app.post("/", (req, res) =>{
-console.log(req.body.blogPost)
+  const postObject = {
+    title: req.body.blogTitle,
+    post: req.body.blogPost
+  }
+  console.log(postObject);
 res.redirect("/");
 });
 
