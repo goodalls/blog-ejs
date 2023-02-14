@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const posts = [];
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -33,19 +34,18 @@ app.get("/contact", (req, res) => {
   });
 });
 
-app.get("/compose", (req,res) => {
-  res.render("compose")
+app.get("/compose", (req, res) => {
+  res.render("compose");
 });
 
-app.post("/", (req, res) =>{
+app.post("/", (req, res) => {
   const postObject = {
     title: req.body.blogTitle,
-    post: req.body.blogPost
-  }
-  console.log(postObject);
-res.redirect("/");
+    post: req.body.blogPost,
+  };
+  posts.push(postObject);
+  res.redirect("/");
 });
-
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
