@@ -2,12 +2,12 @@
 <h1>Home</h1>
 
 <p> <%= homeStartingContent  %> </p>
-
+<%if (posts){%>
    <% posts.forEach(e => { %>
-        <h3> <%= e.title  %> </h3>
+        <h2> <%= e.title  %> </h2>
         <p> <%= e.post  %> </p>
    <% }) %>
-
+<%}%>
 
 
 

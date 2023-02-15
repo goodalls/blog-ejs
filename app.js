@@ -48,6 +48,11 @@ app.post("/", (req, res) => {
   res.redirect("/");
 });
 
+app.get('/post/:postName', (req, res) => {
+  console.log(req.params.postName)
+  res.redirect("/");
+})
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
