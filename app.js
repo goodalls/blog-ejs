@@ -49,8 +49,14 @@ app.post("/", (req, res) => {
 });
 
 app.get('/post/:postName', (req, res) => {
-  console.log(req.params.postName)
-  res.redirect("/");
+  let postName = (req.params.postName);
+  let post = posts.find(e => e.title === postName);
+  console.log(post);
+  if (post) {
+    console.log("found" );
+    res.send("found")
+  }
+  
 })
 
 app.listen(port, () => {
