@@ -3,6 +3,11 @@
 
 <p> <%= homeStartingContent  %> </p>
 
+   <% posts.forEach(e => { %>
+        <h3> <%= e.title  %> </h3>
+        <p> <%= e.post  %> </p>
+   <% }) %>
+
 
 
 

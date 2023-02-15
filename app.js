@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const posts = [];
+const posts = [{title: "test", post:"stuff in post"},{title:"test2", post:"stuff in post 2"}];
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -19,6 +19,7 @@ const contactContent =
 app.get("/", (req, res) => {
   res.render("home", {
     homeStartingContent: homeStartingContent,
+    posts: posts,
   });
 });
 
