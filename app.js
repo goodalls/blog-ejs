@@ -3,7 +3,11 @@ const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const posts = [{title: "test", post:"stuff in post"},{title:"test2", post:"stuff in post 2"}];
+const _ = require("lodash");
+const posts = [
+  { title: "test", content: "stuff in post" },
+  { title: "test 2", content: "stuff in post 2" },
+];
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -42,22 +46,24 @@ app.get("/compose", (req, res) => {
 app.post("/", (req, res) => {
   const postObject = {
     title: req.body.blogTitle,
-    post: req.body.blogPost,
+    content: req.body.blogPost,
   };
   posts.push(postObject);
   res.redirect("/");
 });
 
-app.get('/post/:postName', (req, res) => {
-  let postName = (req.params.postName);
-  let post = posts.find(e => e.title === postName);
-  console.log(post);
+app.get("/post/:postName", (req, res) => {
+  let postName = _.lowerCase(req.params.postName);
+  let post = posts.find((e) => _.lowerCase(e.title) === postName);
+  let title = post.title;
+  let content = post.content;
   if (post) {
-    console.log("found" );
-    res.send("found")
+    res.render("post", {
+      title: title,
+      content: content,
+    });
   }
-  
-})
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
